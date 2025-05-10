@@ -1,1 +1,44 @@
-<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Smart Pick Pro</title><link rel='stylesheet' href='style.css'><script src='https://cdn.jsdelivr.net/npm/chart.js'></script></head><body><div id='background'></div><div id='app'><h1>Smart Pick Pro – Final Version</h1><select id='gameMode'><option value='3'>Pick 3</option><option value='4'>Pick 4</option><option value='5' selected>Pick 5</option></select><textarea id='historyInput' placeholder='Paste draw history...'></textarea><button onclick='analyze()'>Analyze History</button><label><input type='checkbox' id='noRepeats'> No Repeats</label><input id='sumRange' placeholder='Sum range (e.g. 10-28)'><input id='includeDigits' placeholder='Include digits'><input id='excludeDigits' placeholder='Exclude digits'><button onclick='generateSmartPick()'>Generate Smart Pick</button><div id='smartPickResult'></div><div id='bestSums'></div><div id='bestPairs'></div><input id='comboInput' placeholder='Inspect combo'><button onclick='inspectCombo()'>Inspect</button><div id='comboDetails'></div><input id='analyzeCombo' placeholder='Combo (e.g. 93570)'><button onclick='mirrorVtrac()'>Analyze</button><div id='matrixOutput'></div><input id='watchCombo' placeholder='Watchlist combo'><button onclick='addWatch()'>Add</button><div id='watchListOutput'></div></div><script src='script.js'></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Pick Pro – Final Version</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div id="background"></div>
+  <div id="app">
+    <h1>Smart Pick Pro – Final Complete Version</h1>
+    <select id="gameMode">
+      <option value="3">Pick 3</option>
+      <option value="4">Pick 4</option>
+      <option value="5" selected>Pick 5</option>
+    </select>
+    <textarea id="historyInput" placeholder="Paste draw history..."></textarea>
+    <button onclick="analyze()">Analyze</button>
+    <div id="bestSums"></div>
+    <div id="bestPairs"></div>
+    <h2>Smart Filters</h2>
+    <label><input type="checkbox" id="noRepeats"> No Repeats</label>
+    <input id="sumRange" placeholder="Sum range (e.g. 10-28)">
+    <input id="includeDigits" placeholder="Include digits (e.g. 1,2,3)">
+    <input id="excludeDigits" placeholder="Exclude digits (e.g. 4,9)">
+    <button onclick="generateSmartPick()">Generate Smart Pick</button>
+    <div id="smartPickResult"></div>
+    <h2>Combo Inspector</h2>
+    <input id="comboInput" placeholder="Enter combo (e.g. 12345)">
+    <button onclick="inspectCombo()">Inspect</button>
+    <div id="comboDetails"></div>
+    <h2>Mirror / VTRAC / Root Sum</h2>
+    <input id="analyzeCombo" placeholder="Combo (e.g. 80453)">
+    <button onclick="mirrorVtrac()">Analyze</button>
+    <div id="matrixOutput"></div>
+    <h2>Watchlist</h2>
+    <input id="watchCombo" placeholder="Add to watchlist (e.g. 72615)">
+    <button onclick="addWatch()">Add</button>
+    <div id="watchListOutput"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

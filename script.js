@@ -8,26 +8,17 @@ function analyze() {
   lines.forEach(line => {
     const digits = line.match(/\d/g);
     if (!digits) return;
-
     const nums = digits.map(Number);
     const sum = nums.reduce((a, b) => a + b, 0);
     sumCounts[sum] = (sumCounts[sum] || 0) + 1;
-
     for (let i = 0; i < nums.length - 1; i++) {
       const pair = `${nums[i]}${nums[i + 1]}`;
       pairCounts[pair] = (pairCounts[pair] || 0) + 1;
     }
   });
 
-  const topSums = Object.entries(sumCounts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 5)
-    .map(([sum]) => sum);
-
-  const topPairs = Object.entries(pairCounts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 5)
-    .map(([pair]) => pair);
+  const topSums = Object.entries(sumCounts).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([s])=>s);
+  const topPairs = Object.entries(pairCounts).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([p])=>p);
 
   document.getElementById("bestSums").innerText = `Best Sums: ${topSums.join(', ')}`;
   document.getElementById("bestPairs").innerText = `Best Pairs: ${topPairs.join(', ')}`;
@@ -42,7 +33,7 @@ function generateSmartPick() {
 function inspectCombo() {
   const combo = document.getElementById("comboInput").value;
   const digits = combo.split('').map(Number);
-  const sum = digits.reduce((a, b) => a + b, 0);
+  const sum = digits.reduce((a,b) => a+b, 0);
   const root = sum % 9 || 9;
   document.getElementById("comboDetails").innerText = `Sum: ${sum}, Root Sum: ${root}`;
 }
@@ -52,7 +43,7 @@ function mirrorVtrac() {
   const digits = combo.split('').map(Number);
   const mirror = digits.map(d => (d + 5) % 10).join('');
   const vtrac = digits.map(d => Math.floor(d / 2)).join('');
-  const root = digits.reduce((a, b) => a + b, 0) % 9 || 9;
+  const root = digits.reduce((a,b) => a + b, 0) % 9 || 9;
   document.getElementById("matrixOutput").innerText = `Mirror: ${mirror}, VTRAC: ${vtrac}, Root Sum: ${root}`;
 }
 

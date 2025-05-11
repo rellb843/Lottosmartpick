@@ -1,43 +1,61 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Smart Pick Pro – Final Version</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Pick Pro Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
-  <div id="background"></div>
-  <div id="app">
-    <h1>Smart Pick Pro – Final Complete Version</h1>
-    <select id="gameMode">
-      <option value="3">Pick 3</option>
-      <option value="4">Pick 4</option>
-      <option value="5" selected>Pick 5</option>
-    </select>
-    <textarea id="historyInput" placeholder="Paste draw history..."></textarea>
-    <button onclick="analyze()">Analyze</button>
-    <div id="bestSums"></div>
-    <div id="bestPairs"></div>
-    <h2>Smart Filters</h2>
-    <label><input type="checkbox" id="noRepeats"> No Repeats</label>
-    <input id="sumRange" placeholder="Sum range (e.g. 10-28)">
-    <input id="includeDigits" placeholder="Include digits (e.g. 1,2,3)">
-    <input id="excludeDigits" placeholder="Exclude digits (e.g. 4,9)">
-    <button onclick="generateSmartPick()">Generate Smart Pick</button>
-    <div id="smartPickResult"></div>
-    <h2>Combo Inspector</h2>
-    <input id="comboInput" placeholder="Enter combo (e.g. 12345)">
-    <button onclick="inspectCombo()">Inspect</button>
-    <div id="comboDetails"></div>
-    <h2>Mirror / VTRAC / Root Sum</h2>
-    <input id="analyzeCombo" placeholder="Combo (e.g. 80453)">
-    <button onclick="mirrorVtrac()">Analyze</button>
-    <div id="matrixOutput"></div>
-    <h2>Watchlist</h2>
-    <input id="watchCombo" placeholder="Add to watchlist (e.g. 72615)">
-    <button onclick="addWatch()">Add</button>
-    <div id="watchListOutput"></div>
+<body class="bg-gray-900 text-white font-sans min-h-screen">
+  <div class="max-w-6xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6">🎯 Smart Pick Pro Dashboard</h1>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-gray-800 p-4 rounded-xl shadow">
+        <h2 class="text-xl mb-2">📥 Upload Draw History</h2>
+        <textarea id="historyInput" rows="6" class="w-full p-2 bg-gray-700 text-white rounded" placeholder="Paste draw history here..."></textarea>
+        <button onclick="analyze()" class="mt-3 bg-green-600 px-4 py-2 rounded hover:bg-green-700">Analyze</button>
+      </div>
+      <div class="bg-gray-800 p-4 rounded-xl shadow">
+        <h2 class="text-xl mb-2">🎮 Game Mode</h2>
+        <select id="gameMode" class="w-full p-2 bg-gray-700 text-white rounded">
+          <option value="3">Pick 3</option>
+          <option value="4">Pick 4</option>
+          <option value="5" selected>Pick 5</option>
+        </select>
+        <h2 class="text-xl mt-4 mb-2">🎯 Smart Filters</h2>
+        <input id="sumRange" class="w-full mb-2 p-2 bg-gray-700 text-white rounded" placeholder="Sum range (e.g. 10-28)">
+        <input id="includeDigits" class="w-full mb-2 p-2 bg-gray-700 text-white rounded" placeholder="Include digits (e.g. 1,2,3)">
+        <input id="excludeDigits" class="w-full mb-2 p-2 bg-gray-700 text-white rounded" placeholder="Exclude digits (e.g. 0,9)">
+        <label><input type="checkbox" id="noRepeats" class="mr-2">No Repeats</label>
+        <button onclick="generateSmartPick()" class="block mt-3 bg-blue-600 px-4 py-2 rounded hover:bg-blue-700">Generate Smart Pick</button>
+        <div id="smartPickResult" class="mt-2 bg-gray-700 p-2 rounded"></div>
+      </div>
+      <div class="bg-gray-800 p-4 rounded-xl shadow">
+        <h2 class="text-xl mb-2">📊 Best Sums & Pairs</h2>
+        <div id="bestSums" class="mb-2 bg-gray-700 p-2 rounded"></div>
+        <div id="bestPairs" class="bg-gray-700 p-2 rounded"></div>
+      </div>
+      <div class="bg-gray-800 p-4 rounded-xl shadow">
+        <h2 class="text-xl mb-2">🧩 Combo Inspector</h2>
+        <input id="comboInput" class="w-full p-2 bg-gray-700 text-white rounded mb-2" placeholder="Enter combo (e.g. 12345)">
+        <button onclick="inspectCombo()" class="bg-purple-600 px-4 py-2 rounded hover:bg-purple-700">Inspect</button>
+        <div id="comboDetails" class="mt-2 bg-gray-700 p-2 rounded"></div>
+      </div>
+      <div class="bg-gray-800 p-4 rounded-xl shadow">
+        <h2 class="text-xl mb-2">🪞 Mirror / VTRAC / Root Sum</h2>
+        <input id="analyzeCombo" class="w-full p-2 bg-gray-700 text-white rounded mb-2" placeholder="Combo (e.g. 80453)">
+        <button onclick="mirrorVtrac()" class="bg-yellow-600 px-4 py-2 rounded hover:bg-yellow-700">Analyze</button>
+        <div id="matrixOutput" class="mt-2 bg-gray-700 p-2 rounded"></div>
+      </div>
+      <div class="bg-gray-800 p-4 rounded-xl shadow">
+        <h2 class="text-xl mb-2">🔔 Watchlist</h2>
+        <input id="watchCombo" class="w-full p-2 bg-gray-700 text-white rounded mb-2" placeholder="Add to watchlist (e.g. 72615)">
+        <button onclick="addWatch()" class="bg-pink-600 px-4 py-2 rounded hover:bg-pink-700">Add</button>
+        <div id="watchListOutput" class="mt-2 bg-gray-700 p-2 rounded"></div>
+      </div>
+    </div>
   </div>
   <script src="script.js"></script>
 </body>
